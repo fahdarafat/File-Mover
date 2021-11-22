@@ -16,6 +16,7 @@ let newFileNames = []
     if (file.includes('-')){
       oldFilesPaths.push(path.resolve(`./${file}`))
       let files = file.replace(/-/g, '/')
+      files = files.split('_')[1]
       newFileNames.push(files)  
     }
   })
@@ -26,7 +27,7 @@ let newFileNames = []
   })
   //Actually move the file to the new location
   for (let i = 0; i < oldFilesPaths.length; i++) {
-    fs.rename(oldFilesPaths[i], `${newFileNames[i]}.png`, (err) => {
+    fs.rename(oldFilesPaths[i], `${newFileNames[i]}`, (err) => {
       if (err) throw err;
     })
   }
